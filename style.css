@@ -1,0 +1,232 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar {
+    background: #222;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+.logo {
+    font-size: 22px;
+}
+.logo span {
+    color: #ff4757;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+.nav-links li {
+    margin-left: 20px;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+.nav-links a:hover {
+    color: #ff4757;
+}
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('image/cover.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding-top: 60px;
+    flex-direction: column; /* Profile image + text vertically stack */
+}
+
+/* Profile Image */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff4757;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.hero h1 span {
+    color: #ff4757;
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.btn {
+    background: rgb(0, 255, 255);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(64, 64, 64);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+.btn:hover {
+    background: mediumspringgreen;
+}
+
+/* Title Buttons */
+.title-buttons {
+    display: flex;
+    gap: 10px;
+}
+.title-btn {
+    background: rgb(0, 255, 255);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #222;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.title-btn:hover {
+    background: rgb(244, 72, 72);
+}
+
+/* Project Cards Hover Effect */
+.project-card a {
+  font-weight: bold;
+  color: inherit;        /* card ka color follow kare */
+  text-decoration: none;
+  display: block;
+  margin-top: 8px;
+}
+
+.project-card a:hover {
+  color: rgb(40, 16, 255);
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+    padding: 60px 0;
+    text-align: center;
+}
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Projects */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.project-card {
+    background: rgb(241, 227, 29);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;  
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    color: #00028b;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        display: none;
+    }
+}
+
+
+.contact-section {
+  background: linear-gradient(135deg, #000, #222);
+  color: white;
+}
+
+.contact-box {
+  max-width: 500px;
+  margin: auto;
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.contact-item a {
+  color: cyan;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  color: #ff4757;
+}
+
+
+.about-section {
+  background: #f9f9f9;
+}
+
+.about-card {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.about-card p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444;
+}
