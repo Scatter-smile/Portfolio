@@ -133,17 +133,15 @@
 
 
 <div class="upload-box" id="uploadBox">
-  <input type="file" multiple accept="image/*,video/*" onchange="addFiles(event)">
-</div>
-
-<!-- cloudinary -->
-
-<input 
+  <input 
   type="file"
   accept="image/*,video/*"
   onchange="uploadToCloudinary(event)">
   
-  <div class="preview" id="preview"></div>
+ </div>
+
+
+
 
 <script>
 
@@ -242,7 +240,7 @@ async function uploadToCloudinary(e) {
   const file = e.target.files[0];
   if (!file) return;
 
-  const url = `https://api.cloudinary.com/v1_1/dcvtekdmk/auto/upload`;
+  const url = `https://api.cloudinary.com/v1_1/{dcvtekdmk}/auto/upload`;
 
   const formData = new FormData();
   formData.append("file", file);
