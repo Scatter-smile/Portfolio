@@ -136,9 +136,17 @@
   <input type="file" multiple accept="image/*,video/*" onchange="addFiles(event)">
 </div>
 
-<div class="preview" id="preview"></div>
+<!-- cloudinary -->
+
+<input 
+  type="file"
+  accept="image/*,video/*"
+  onchange="uploadToCloudinary(event)">
+  
+  <div class="preview" id="preview"></div>
 
 <script>
+
   const ADMIN_PASSWORD = "1234";
   const popup = document.getElementById("popup");
   const uploadBox = document.getElementById("uploadBox");
@@ -219,6 +227,67 @@
     div.append(media, del);
     preview.appendChild(div);
   }
+
+
+
+// cloudinary
+
+
+
+
+const CLOUD_NAME = "dcvtekdmk";       // yaha apna cloud name
+const UPLOAD_PRESET = "ml_default"; // yaha apna preset
+
+async function uploadToCloudinary(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const url = `https://api.cloudinary.com/v1_1/dcvtekdmk/auto/upload`;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", UPLOAD_PRESET);
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+    showMedia(data.secure_url, data.resource_type);
+  } catch (err) {
+    alert("Upload failed");
+    console.error(err);
+  }
+}
+
+function showMedia(url, type) {
+  const preview = document.getElementById("preview");
+  const div = document.createElement("div");
+  div.className = "item";
+
+  let media;
+  if (type === "image") {
+    media = document.createElement("img");
+  } else {
+    media = document.createElement("video");
+    media.controls = true;
+  }
+
+  media.src = url;
+  div.appendChild(media);
+  preview.appendChild(div);
+}
+
+
+
+
+
+
+
+
+
 </script>
 
 </body>
