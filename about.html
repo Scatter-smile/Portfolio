@@ -1,155 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Project Gallery</title>
+<meta charset="UTF-8">
+<title>Project Gallery</title>
 
-  <style>
-    body {
-      background: #000;
-      color: white;
-      font-family: Poppins, sans-serif;
-      padding: 30px;
-      text-align: center;
-    }
+<style>
+body{
+  background:#000;
+  color:#fff;
+  font-family:Poppins, sans-serif;
+  padding:30px;
+  text-align:center;
+}
 
-    h1 {
-      color: cyan;
-      margin-bottom: 30px;
-    }
+h1{color:cyan;}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+.buttons{
+  margin-bottom:25px;
+}
 
-    .item {
-      animation: zoom 0.7s ease;
-    }
+.buttons button{
+  margin:5px;
+  padding:10px 18px;
+  border:none;
+  border-radius:20px;
+  background:cyan;
+  cursor:pointer;
+  font-weight:bold;
+}
 
-    .item img,
-    .item video {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,255,255,0.4);
-    }
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
 
-    @keyframes zoom {
-      from {transform: scale(0.7); opacity: 0;}
-      to {transform: scale(1); opacity: 1;}
-    }
-  </style>
+.item img,.item video{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,255,255,0.4);
+}
+
+/* 🔍 ZOOM MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.modal img,.modal video{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+</style>
 </head>
 
 <body>
 
 <h1>My Project Gallery</h1>
 
-<div class="gallery">
-
-  <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_01.jpg" alt="Project Image">
-  </div>
-
-  <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_02.jpg" alt="Project Image">
-  </div>
-
-  <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_03.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_04.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_05.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_06.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_07.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_08.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_09.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_10.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_11.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_12.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_13.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/Thumb_14.jpg" alt="Project Image">
-  </div>
-
-    <!-- IMAGE -->
-  <div class="item">
-    <img src="image/CoverPP.jpg" alt="Project Image">
-  </div>
-
-  <!-- VIDEO -->
-  <div class="item">
-    <video src="Videos/tiger.mp4" controls></video>
-  </div>
-
-  <!-- VIDEO -->
-  <div class="item">
-    <video src="Videos/Krishna.mp4" controls></video>
-  </div>
-
-  <!-- VIDEO -->
-  <div class="item">
-    <video src="Videos/cartoon.mp4" controls></video>
-  </div>
-
-
-    <!-- VIDEO -->
-  <div class="item">
-    <video src="Videos/radha krishna.mp4" controls></video>
-  </div>
-
-    <!-- VIDEO -->
-  <div class="item">
-    <video src="Videos/Cartoon_01.mp4" controls></video>
-  </div>
-
+<!-- 🔘 CLICK POINTS (10 OPTIONS) -->
+<div class="buttons">
+  <button onclick="loadGallery('thumbnail')">Thumbnail</button>
+  <button onclick="loadGallery('banner')">Banner</button>
+  <button onclick="loadGallery('poster')">Poster</button>
+  <button onclick="loadGallery('logo')">Logo</button>
+  <button onclick="loadGallery('ui')">UI Design</button>
+  <button onclick="loadGallery('social')">Social Media</button>
+  <button onclick="loadGallery('flyer')">Flyer</button>
+  <button onclick="loadGallery('cover')">Cover</button>
+  <button onclick="loadGallery('mockup')">Mockup</button>
+  <button onclick="loadGallery('video')">Videos</button>
 </div>
+
+<div class="gallery" id="gallery"></div>
+
+<!-- ZOOM VIEW -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <div id="modalContent"></div>
+</div>
+
+<script>
+/* =====================================================
+   🔗 IMAGE / VIDEO PATH SECTION
+   👉 यही जगह है जहाँ तुम folder से path डालोगे
+===================================================== */
+
+const data = {
+  thumbnail:[
+    "image/Thumb_01.jpg",
+    "image/Thumb_02.jpg",
+    "image/Thumb_03.jpg",
+    "image/Thumb_04.jpg",
+    "image/Thumb_05.jpg",
+    "image/Thumb_06.jpg",
+    "image/Thumb_07.jpg",
+    "image/Thumb_08.jpg",
+    "image/Thumb_09.jpg",
+    "image/Thumb_10.jpg",
+    "image/Thumb_11.jpg",
+    "image/Thumb_12.jpg",
+    "image/Thumb_13.jpg",
+    "image/Thumb_14.jpg"
+  ],
+
+  banner:[
+    "image/Sample.png",
+    "image/Sample2.png",
+    "image/Sample3.png"
+  ],
+
+  poster:[
+    "image/Sample2.png"
+  ],
+
+  logo:[
+    "image/Logo_01.jpg"
+  ],
+
+  ui:[
+    "image/UI_01.jpg"
+  ],
+
+  social:[
+    "image/Social_01.jpg"
+  ],
+
+  flyer:[
+    "image/Flyer_01.jpg"
+  ],
+
+  cover:[
+    "image/CoverPP.jpg"
+  ],
+
+  mockup:[
+    "image/Mockup_01.jpg"
+  ],
+
+  video:[
+    "Videos/tiger.mp4",
+    "Videos/cartoon.mp4",
+    "Videos/Cartoon_01.mp4",
+    "Videos/radha krishna.mp4",
+    "Videos/Krishna.mp4"
+  ]
+};
+
+/* ===================================================== */
+
+const gallery=document.getElementById("gallery");
+const modal=document.getElementById("modal");
+const modalContent=document.getElementById("modalContent");
+
+function loadGallery(type){
+  gallery.innerHTML="";
+  data[type].forEach(src=>{
+    const div=document.createElement("div");
+    div.className="item";
+
+    if(type==="video"){
+      const v=document.createElement("video");
+      v.src=src;
+      v.controls=true;
+      v.onclick=()=>openModal("video",src);
+      div.appendChild(v);
+    }else{
+      const img=document.createElement("img");
+      img.src=src;
+      img.onclick=()=>openModal("image",src);
+      div.appendChild(img);
+    }
+
+    gallery.appendChild(div);
+  });
+}
+
+function openModal(type,src){
+  modal.style.display="flex";
+  modalContent.innerHTML="";
+  if(type==="image"){
+    modalContent.innerHTML=`<img src="${src}">`;
+  }else{
+    modalContent.innerHTML=`<video src="${src}" controls autoplay></video>`;
+  }
+}
+
+function closeModal(){
+  modal.style.display="none";
+  modalContent.innerHTML="";
+}
+
+/* default load */
+loadGallery("thumbnail");
+</script>
 
 </body>
 </html>
