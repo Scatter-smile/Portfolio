@@ -1,86 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Project View</title>
+  <meta charset="UTF-8">
+  <title>Project Gallery</title>
 
   <style>
     body {
       background: #000;
       color: white;
       font-family: Poppins, sans-serif;
-      text-align: center;
       padding: 30px;
+      text-align: center;
     }
 
-    h1 { color: cyan; }
-
-    /* PASSWORD POPUP */
-
-    
-    .popup {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-
-    .popup-box {
-      background: #111;
-      padding: 25px;
-      border-radius: 12px;
-      width: 280px;
-    }
-
-    .popup-box input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-      border: none;
-    }
-
-    .eye {
-      position: absolute;
-      right: 10px;
-      top: 15px;
-      cursor: pointer;
+    h1 {
       color: cyan;
+      margin-bottom: 30px;
     }
 
-    .popup-box button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 10px;
-      background: cyan;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* UPLOAD */
-
-
-    .upload-box {
-      border: 2px dashed cyan;
-      padding: 25px;
-      border-radius: 15px;
-      margin: 20px auto;
-      max-width: 500px;
-      display: none;
-    }
-
-    .preview {
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      margin-top: 30px;
     }
 
     .item {
-      position: relative;
-      animation: zoom 0.6s ease;
+      animation: zoom 0.7s ease;
     }
 
     .item img,
@@ -90,136 +35,121 @@
       box-shadow: 0 8px 25px rgba(0,255,255,0.4);
     }
 
-    .delete-btn {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      background: red;
-      border: none;
-      color: white;
-      border-radius: 50%;
-      width: 26px;
-      height: 26px;
-      cursor: pointer;
-      display: none;
-    }
-
     @keyframes zoom {
-      from {transform: scale(0.7); opacity:0}
-      to {transform: scale(1); opacity:1}
+      from {transform: scale(0.7); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
     }
   </style>
 </head>
 
 <body>
 
-<h1 id="title"></h1>
+<h1>My Project Gallery</h1>
 
-<!-- PASSWORD POPUP -->
+<div class="gallery">
 
-
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <h3>Admin Access</h3>
-    <div style="position:relative">
-      <input type="password" id="password" placeholder="Enter password">
-      <span class="eye" onclick="togglePassword()">👁️</span>
-    </div>
-    <button onclick="checkPassword()">Submit</button>
+  <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_01.jpg" alt="Project Image">
   </div>
+
+  <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_02.jpg" alt="Project Image">
+  </div>
+
+  <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_03.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_04.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_05.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_06.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_07.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_08.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_09.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_10.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_11.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_12.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_13.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/Thumb_14.jpg" alt="Project Image">
+  </div>
+
+    <!-- IMAGE -->
+  <div class="item">
+    <img src="image/CoverPP.jpg" alt="Project Image">
+  </div>
+
+  <!-- VIDEO -->
+  <div class="item">
+    <video src="Videos/tiger.mp4" controls></video>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="item">
+    <video src="Videos/Krishna.mp4" controls></video>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="item">
+    <video src="Videos/cartoon.mp4" controls></video>
+  </div>
+
+
+    <!-- VIDEO -->
+  <div class="item">
+    <video src="Videos/radha krishna.mp4" controls></video>
+  </div>
+
+    <!-- VIDEO -->
+  <div class="item">
+    <video src="Videos/Cartoon_01.mp4" controls></video>
+  </div>
+
 </div>
-
-<!-- UPLOAD -->
-
-
-<div class="upload-box" id="uploadBox">
-  <input type="file" multiple accept="image/*,video/*" onchange="addFiles(event)">
-</div>
-
-<div class="preview" id="preview"></div>
-
-<script>
-  const ADMIN_PASSWORD = "1234";
-  const popup = document.getElementById("popup");
-  const uploadBox = document.getElementById("uploadBox");
-  const preview = document.getElementById("preview");
-  const params = new URLSearchParams(location.search);
-  const projectType = params.get("type") || "default";
-  const storageKey = "project_" + projectType;
-
-  document.getElementById("title").innerText =
-    projectType.toUpperCase() + " PROJECT";
-
-  let isAdmin = false;
-  let savedItems = JSON.parse(localStorage.getItem(storageKey)) || [];
-
-  // AUTO CLOSE POPUP AFTER 15 SEC
-
-  setTimeout(() => popup.style.display = "none", 15000);
-
-  // LOAD ITEMS
-
-
-  savedItems.forEach(i => createItem(i.src, i.type));
-
-  function togglePassword() {
-    const p = document.getElementById("password");
-    p.type = p.type === "password" ? "text" : "password";
-  }
-
-  function checkPassword() {
-    const val = document.getElementById("password").value;
-    if (val === ADMIN_PASSWORD) {
-      isAdmin = true;
-      popup.style.display = "none";
-      uploadBox.style.display = "block";
-      document.querySelectorAll(".delete-btn").forEach(b => b.style.display="block");
-    } else {
-      popup.style.display = "none";
-    }
-  }
-
-  function addFiles(e) {
-    Array.from(e.target.files).forEach(file => {
-      const r = new FileReader();
-      r.onload = () => {
-        const data = { src: r.result, type: file.type };
-        savedItems.push(data);
-        localStorage.setItem(storageKey, JSON.stringify(savedItems));
-        createItem(data.src, data.type);
-      };
-      r.readAsDataURL(file);
-    });
-    e.target.value = "";
-  }
-
-  function createItem(src, type) {
-    const div = document.createElement("div");
-    div.className = "item";
-
-    let media = type.startsWith("image")
-      ? document.createElement("img")
-      : document.createElement("video");
-
-    if (media.tagName === "VIDEO") media.controls = true;
-    media.src = src;
-
-    const del = document.createElement("button");
-    del.innerText = "×";
-    del.className = "delete-btn";
-
-    del.onclick = () => {
-      preview.removeChild(div);
-      savedItems = savedItems.filter(i => i.src !== src);
-      localStorage.setItem(storageKey, JSON.stringify(savedItems));
-    };
-
-    if (isAdmin) del.style.display = "block";
-
-    div.append(media, del);
-    preview.appendChild(div);
-  }
-</script>
 
 </body>
 </html>
